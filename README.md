@@ -25,14 +25,3 @@ To activate the virtual environment, run in this package's root directory:
 ```bash
 source .venv/bin/activate
 ```
-
-## Download Data
-
-To download the tis_fastmri dataset, run the following command:
-
-```bash
-uv run get_data.py
-```
-
-## 
-
