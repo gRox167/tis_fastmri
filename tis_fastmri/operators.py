@@ -95,3 +95,20 @@ class ForwardModel(nn.Module):
         x = self.C(x, csm)
         x = self.F(x)
         return x
+
+
+class AdjointModel(nn.Module):
+    """
+    MR adjoint model to do SENSE expansion and inverse Fourier transform
+    """
+
+    def __init__(self):
+        super().__init__()
+        self.C_adj = C_adj()
+        self.F_adj = F_adj()
+
+    def forward(self, x, csm, mask):
+        x = self.M(x, mask)
+        x = self.F_adj(x)
+        x = self.C_adj(x, csm)
+        return x
