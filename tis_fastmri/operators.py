@@ -36,7 +36,7 @@ class F(nn.Module):
         super().__init__()
 
     def forward(self, x):
-        return torch.fft.fft2(x, norm="ortho")
+        return torch.fft.fftshift(torch.fft.fft2(x, norm="ortho"), dim=(-2, -1))
 
 
 class F_adj(nn.Module):
@@ -48,7 +48,7 @@ class F_adj(nn.Module):
         super().__init__()
 
     def forward(self, x):
-        return torch.fft.ifft2(x, norm="ortho")
+        return torch.fft.ifftshift(torch.fft.ifft2(x, norm="ortho"), dim=(-2, -1))
 
 
 class M(nn.Module):
@@ -107,8 +107,7 @@ class AdjointModel(nn.Module):
         self.C_adj = C_adj()
         self.F_adj = F_adj()
 
-    def forward(self, x, csm, mask):
-        x = self.M(x, mask)
+    def forward(self, x, csm):
         x = self.F_adj(x)
         x = self.C_adj(x, csm)
         return x
