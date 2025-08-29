@@ -12,9 +12,21 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 If you are using windows or you have trouble to install please refer to [uv's installation instructions](https://docs.astral.sh/uv/getting-started/installation/).
 
+After installation restart your terminal and verify the installation by running:
+
+```bash
+uv --version
+```
+
 ## Usage
 
-To install the dependencies for this project, run the following command in this package's root directory:
+To install the dependencies for this project, first go to the root directory of this package:
+
+```bash
+cd {/path/to/tis_fastmri}
+```
+
+run the following command in this package's root directory:
 
 ```bash
 uv sync
